@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Roma 💘</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffd6e0, #ffeef2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 340px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    position: relative;
+    z-index: 2;
+  }
+
+  h1 {
+    color: #ff4d6d;
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #777;
+    margin-bottom: 25px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    margin: 8px 0;
+    cursor: pointer;
+  }
+
+  #yes {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  #no {
+    background: #f1f1f1;
+    color: #888;
+    position: relative;
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-120vh);
+      opacity: 0;
+    }
+  }
+
+  /* Cry animation */
+  .cry {
+    animation: shake 0.4s;
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <h1>Roma 💖</h1>
+  <p>Will you be my Valentine?</p>
+
+  <button id="yes">Yes 💕</button>
+  <button id="no">No 😢</button>
+</div>
+
+<script>
+  // Floating hearts generator
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 7000);
+  }
+
+  setInterval(createHeart, 400);
+
+  // YES explosion
+  document.getElementById("yes").onclick = () => {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+        color:white;
+        text-align:center;
+        padding:20px;">
+        <h1 style="font-size:36px;">YAY!!! 💥💘</h1>
+        <p style="font-size:20px;">I’m so happy, Roma 🥰</p>
+        <p style="font-size:18px;">Best Valentine ever 💕</p>
+      </div>
+    `;
+  };
+
+  // NO cry + refusal
+  const noBtn = document.getElementById("no");
+  noBtn.onclick = () => {
+    noBtn.classList.add("cry");
+    noBtn.innerText = "Please don’t 😭";
+    setTimeout(() => noBtn.classList.remove("cry"), 400);
+  };
+</script>
+
+</body>
+</html>
